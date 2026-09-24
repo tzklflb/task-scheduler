@@ -1,0 +1,18 @@
+{
+  "assignments": [
+    {"id":"completed","assignee":"contributor","start":"2026-01-05","end":"2026-01-05","status":"done"},
+    {"id":"earliest-start","assignee":"backend-peer","start":"2026-01-16","end":"2026-01-16","status":null},
+    {"id":"fixed-qa","assignee":"qa","start":"2026-01-09","end":"2026-01-12","status":null},
+    {"id":"follow-next","assignee":"backend-peer","start":"2026-01-14","end":"2026-01-14","status":null},
+    {"id":"follow-source","assignee":"backend-peer","start":"2026-01-13","end":"2026-01-13","status":null},
+    {"id":"frontend-after-join","assignee":"frontend-peer","start":"2026-01-08","end":"2026-01-08","status":null},
+    {"id":"in-progress","assignee":"contributor","start":"2026-01-06","end":"2026-01-06","status":"in_progress"},
+    {"id":"later","assignee":"contributor","start":"2026-01-07","end":"2026-01-07","status":null},
+    {"id":"wave-one","assignee":"backend-peer","start":"2026-01-14","end":"2026-01-15","status":null},
+    {"id":"wave-two","assignee":"backend-peer","start":"2026-01-15","end":"2026-01-16","status":null},
+    {"id":"wave-unlisted","assignee":"backend-peer","start":"2026-01-19","end":"2026-01-19","status":null}
+  ],
+  "core_end": "2026-01-20",
+  "completion_with_buffer": "2026-01-30",
+  "remaining_effort": 8.5
+}

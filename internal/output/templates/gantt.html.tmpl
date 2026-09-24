@@ -1,0 +1,47 @@
+{{define "gantt.html.tmpl"}}<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{.View.Title}}</title>
+  <style>{{.CSS}}</style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1 id="title"></h1>
+    </header>
+    <dl class="summary" id="summary"></dl>
+    <section class="sprint-goals" id="sprint-goals" aria-label="スプリントゴール"></section>
+    <section aria-labelledby="timeline-heading">
+      <div class="timeline-heading">
+        <h2 id="timeline-heading">工程表</h2>
+        <div class="view-switch" id="view-switch" aria-label="工程表の表示単位">
+          <button type="button" data-view="worker" aria-pressed="true">担当者別</button>
+          <button type="button" data-view="plan" aria-pressed="false">計画別</button>
+        </div>
+      </div>
+      <div class="legend" id="legend" aria-label="工程表の凡例"></div>
+      <div class="gantt-scroll" tabindex="0" aria-label="横スクロールできる工程表">
+        <div class="gantt" id="gantt"></div>
+      </div>
+      <div class="task-tooltip" id="task-tooltip" role="tooltip" hidden></div>
+    </section>
+    <details open>
+      <summary>前提</summary>
+      <ul id="assumptions"></ul>
+    </details>
+    <details class="detail-section">
+      <summary>タスク一覧</summary>
+      <div class="task-table-wrap">
+        <table class="task-table">
+          <thead><tr><th>ID</th><th>名前</th><th>担当</th><th>計画</th><th>工数</th><th>優先度</th><th>状態</th></tr></thead>
+          <tbody id="task-list"></tbody>
+        </table>
+      </div>
+    </details>
+  </main>
+  <script id="schedule-data" type="application/json">{{.View}}</script>
+  <script>{{.JS}}</script>
+</body>
+</html>{{end}}

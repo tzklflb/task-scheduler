@@ -1,0 +1,133 @@
+# 汎用入力の受け入れ・計算テスト用fixture。実在のEpicではない。
+epic:
+  id: TEST-42
+  name: "汎用テスト"
+settings:
+  start_date: "2026-01-05"
+  as_of: "2026-01-06"
+  release_date: "2026-02-06"
+  sprint_anchor: "2026-01-05"
+  sprint_length_days: 14
+  sprint_goals:
+    - end: "2026-01-18"
+      goal: "基本機能を確認する"
+    - end: "2026-02-01"
+      goal: "リリース候補を確認する"
+  core_end_min: "2026-01-20"
+  buffer_days: 2
+  buffer_allocation: {"2026-01": 1, tail: 1}
+  holidays: ["2026-02-02"]
+  half_days: ["2026-01-06"]
+  selection:
+    defer_non_core: {enabled: true}
+    follow_continuity: {enabled: true}
+    preferred_worker:
+      default_threshold_days: 3.0
+      plan_assignees: {delivery: contributor}
+  plan_workers: {delivery: [contributor, backend-peer]}
+  waves:
+    wave: [[wave-one], [wave-two]]
+workers:
+  - id: contributor
+    lanes: [backend, frontend]
+  - id: backend-peer
+    lanes: [backend]
+  - id: frontend-peer
+    lanes: [frontend]
+    available_from: "2026-01-08"
+  - id: qa
+    lanes: [qa]
+tasks:
+  - id: completed
+    name: 完了済み
+    plan: delivery
+    effort: 1.0
+    deps: []
+    lane: backend
+    assignee: contributor
+    status: done
+    done_on: "2026-01-05"
+  - id: in-progress
+    name: 着手中
+    plan: delivery
+    effort: 0.5
+    deps: [completed]
+    lane: backend
+    assignee: contributor
+    status: in_progress
+  - id: wave-one
+    name: 波1
+    plan: wave
+    effort: 1.0
+    deps: []
+    lane: backend
+    assignee: backend-peer
+  - id: wave-two
+    name: 波2
+    plan: wave
+    effort: 1.0
+    deps: []
+    lane: backend
+    assignee: backend-peer
+  - id: wave-unlisted
+    name: 波外
+    plan: wave
+    effort: 0.5
+    deps: []
+    lane: backend
+    assignee: backend-peer
+  - id: frontend-after-join
+    name: 参画後の作業
+    plan: delivery
+    effort: 1.0
+    deps: []
+    lane: frontend
+    assignee: frontend-peer
+  - id: earliest-start
+    name: 最早着手あり
+    plan: delivery
+    effort: 0.5
+    deps: []
+    lane: backend
+    assignee: backend-peer
+    not_before: "2026-01-14"
+  - id: fixed-qa
+    name: 固定QA
+    plan: qa
+    effort: 2.0
+    deps: []
+    lane: qa
+    assignee: qa
+    start_on: "2026-01-09"
+    end_on: "2026-01-12"
+    qa_blocking: false
+  - id: follow-source
+    name: 引継ぎ元
+    plan: delivery
+    effort: 0.5
+    deps: []
+    lane: backend
+    assignee: backend-peer
+    start_on: "2026-01-13"
+  - id: follow-next
+    name: 引継ぎ先
+    plan: delivery
+    effort: 0.5
+    deps: []
+    lane: backend
+    follow: follow-source
+  - id: later
+    name: コア外のリリース対応
+    plan: delivery
+    effort: 1.0
+    deps: []
+    lane: backend
+    assignee: contributor
+    core: false
+  - id: outside
+    name: スケジュール外
+    plan: delivery
+    effort: 1.0
+    deps: []
+    lane: backend
+    release_blocking: false

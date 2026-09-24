@@ -1,0 +1,11 @@
+# 実際のスケジュールデータはコミットしない
+/epics/
+/task-scheduler
+
+# Python のバイトコードキャッシュ
+__pycache__/
+*.pyc
+
+# 生成物はコミットしない
+gantt.md
+gantt.html
